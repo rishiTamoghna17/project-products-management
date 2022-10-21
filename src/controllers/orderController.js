@@ -92,6 +92,7 @@ const updateOrder = async function (req, res) {
     try {
         const userId = req.params.userId;
         const data = req.body;
+        
         const { orderId, status } = data;
 
         
