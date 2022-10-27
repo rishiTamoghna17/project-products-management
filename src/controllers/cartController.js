@@ -122,6 +122,7 @@ const updateCart = async function (req, res) {
       let userId = req.params.userId;
       let data = req.body;
       let { cartId, productId, removeProduct } = data;
+      
       if (!isValidObjectId(userId)) {
         res.status(400).send({ status: false, message: "invalid userId" })
       }
@@ -167,9 +168,7 @@ const updateCart = async function (req, res) {
   
       if (removeProduct == 1) {
         let updateCart = await cartModel.findOneAndUpdate({ _id: cartId, "items.productId": productId }, { $inc: { totalPrice: -product.price, "items.$.quantity": -1 } }, { new: true })
-        // console.log(updateCart.items)
-  
-        //  return res.status(200).send({status:true,message:"success",data:updateCart})
+        
   
         let quantity = updateCart.items.filter((item) => item.productId.toString() === productId)[0].quantity
         if (quantity == 0) {

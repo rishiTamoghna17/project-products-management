@@ -7,6 +7,7 @@ const authentication = async function(req,res,next){
     if(!token) {return res.status(401).send({msg:"required token "}) }
     let splitToken = token.split(' ') //converting into array
         // decoding token  
+        console.log(token)
     jwt.verify(splitToken[1],"Project5-group4"
     ,(err,decoded)=>{
         if(err){

@@ -211,12 +211,6 @@ const login = async function (req, res) {
             return res.status(400).send({ status: false, message: "You Entered Wrong password" })
         }
 
-
-
-
-
-
-
         let token = jwt.sign(
             {
                 userId: user._id.toString(),
